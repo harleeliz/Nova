@@ -3,6 +3,7 @@
 
 This repository contains the Nova project developed by the IIT Robotics Club. It integrates a Bluetooth-based robot controller system with a mobile application built using MIT App Inventor and firmware powered by PlatformIO.
 Inspo: Osiris IIT Robotics Hexagon Robot
+
 ---
 
 ## Mobile App Setup
