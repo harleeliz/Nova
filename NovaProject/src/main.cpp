@@ -139,7 +139,7 @@ void moveRight() {
 void handleCommand(char command) {
   if (command == 'w') { moveForward(); setMotorSpeed(currentMotorSpeed); }
   else if (command == 's') { moveBackward(); setMotorSpeed(currentMotorSpeed); }
-  else if (command == 'l') { moveLeft(); setMotorSpeed(currentMotorSpeed); }
+  //else if (command == 'l') { moveLeft(); setMotorSpeed(currentMotorSpeed); }
   else if (command == 'r') { moveRight(); setMotorSpeed(currentMotorSpeed); }
   else if (command == 'a') { setFanSpeed(currentFanSpeed); }
   else if (command == 'd') { setFanSpeed(0); }
