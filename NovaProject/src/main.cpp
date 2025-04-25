@@ -30,7 +30,10 @@ const int MAX_SPEED = 255;  // Maximum PWM value (0-255)
 /***** Function Prototypes *****/
 void moveForward();
 void moveBackward();
+void moveRight();
+void moveLeft();         
 void stopMotors();
+void stopMotorC();       
 void setMotorSpeed(int speed);
 void setFanSpeed(int speed);
 void handleCommand(char command);
@@ -72,31 +75,65 @@ void loop() {
   }
 }
 
-
-
-
 void moveForward() {
-  // Stop Motor C
-  analogWrite(MotorC_Speed, 0);
-  
-  // Move Motor B Forward
-  digitalWrite(MotorB_Pin1, HIGH); 
-  digitalWrite(MotorB_Pin2, LOW);
+  digitalWrite(MotorA_Pin1, LOW); 
+  digitalWrite(MotorA_Pin2, HIGH);
 
-  // Move Motor A Forward
-  digitalWrite(MotorA_Pin1, HIGH); 
-  digitalWrite(MotorA_Pin2, LOW);
+  digitalWrite(MotorB_Pin1, LOW); 
+  digitalWrite(MotorB_Pin2, HIGH);
+
+  stopMotorC();  // Stop Motor C while going straight
+  setMotorSpeed(currentMotorSpeed);
 }
 
 void moveBackward() {
-  digitalWrite(MotorA_Pin1, LOW); 
-  digitalWrite(MotorA_Pin2, HIGH);
+  digitalWrite(MotorB_Pin1, HIGH); 
+  digitalWrite(MotorB_Pin2, LOW);
+
+  digitalWrite(MotorA_Pin1, HIGH); 
+  digitalWrite(MotorA_Pin2, LOW);
+
+  stopMotorC();  // Stop Motor C while moving straight
+  setMotorSpeed(currentMotorSpeed);
+}
+
+void moveRight() {
+
   
-  digitalWrite(MotorB_Pin1, LOW); 
-  digitalWrite(MotorB_Pin2, HIGH);
-  
+  digitalWrite(MotorB_Pin1, HIGH); 
+  digitalWrite(MotorB_Pin2, LOW);
+
   digitalWrite(MotorC_Pin1, LOW); 
   digitalWrite(MotorC_Pin2, HIGH);
+
+  digitalWrite(MotorA_Pin1, LOW); 
+  digitalWrite(MotorA_Pin2, HIGH);
+
+  
+  setMotorSpeed(currentMotorSpeed);
+}
+
+void moveLeft() {
+  
+  digitalWrite(MotorA_Pin1, HIGH); 
+  digitalWrite(MotorA_Pin2, LOW);
+
+  digitalWrite(MotorB_Pin1, LOW); 
+  digitalWrite(MotorB_Pin2, HIGH);
+
+  digitalWrite(MotorC_Pin1, HIGH); 
+  digitalWrite(MotorC_Pin2, LOW);
+
+  setMotorSpeed(currentMotorSpeed);
+}
+
+
+
+//FUNCTION: Stop only Motor C
+void stopMotorC() {
+  analogWrite(MotorC_Speed, 0);
+  digitalWrite(MotorC_Pin1, LOW);
+  digitalWrite(MotorC_Pin2, LOW);
 }
 
 void stopMotors() {
@@ -116,33 +153,20 @@ void setFanSpeed(int speed) {
   analogWrite(Fan_ENA_Pin, speed);
 }
 
-
-/*
-void moveLeft() {
-  // Move ALL Motors Backward for Strong Left Turn
-  digitalWrite(MotorA_Pin1, LOW);  digitalWrite(MotorA_Pin2, HIGH);
-  digitalWrite(MotorB_Pin1, LOW);  digitalWrite(MotorB_Pin2, HIGH);
-  digitalWrite(MotorC_Pin1, LOW);  digitalWrite(MotorC_Pin2, HIGH);
-
-  // Set the speed of all motors
-  setMotorSpeed(currentMotorSpeed);
-}
-  */
-
-void moveRight() {
-  digitalWrite(MotorA_Pin1, HIGH); digitalWrite(MotorA_Pin2, LOW);
-  digitalWrite(MotorB_Pin1, LOW); digitalWrite(MotorB_Pin2, HIGH);
-  digitalWrite(MotorC_Pin1, HIGH); digitalWrite(MotorC_Pin2, LOW);
-}
-
-
 void handleCommand(char command) {
-  if (command == 'w') { moveForward(); setMotorSpeed(currentMotorSpeed); }
-  else if (command == 's') { moveBackward(); setMotorSpeed(currentMotorSpeed); }
-  //else if (command == 'l') { moveLeft(); setMotorSpeed(currentMotorSpeed); }
-  else if (command == 'r') { moveRight(); setMotorSpeed(currentMotorSpeed); }
-  else if (command == 'a') { setFanSpeed(currentFanSpeed); }
-  else if (command == 'd') { setFanSpeed(0); }
-  else if (command == 'q') { stopMotors(); }
-
+  if (command == 'w') {
+    moveForward();
+  } else if (command == 's') {
+    moveBackward();
+  } else if (command == 'r') {
+    moveRight();
+  } else if (command == 'l') {    
+    moveLeft();
+  } else if (command == 'a') {
+    setFanSpeed(currentFanSpeed);
+  } else if (command == 'd') {
+    setFanSpeed(0);
+  } else if (command == 'q') {
+    stopMotors();
+  }
 }

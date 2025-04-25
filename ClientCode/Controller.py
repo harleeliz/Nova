@@ -28,17 +28,17 @@ def send_command(cmd):
 # ----- KEYBOARD MOVEMENT LOGIC -----
 def get_keyboard_command(x, y, deadzone=0.3):
     if abs(x) < deadzone and abs(y) < deadzone:
-        return 'q'  # Stop Motors only
+        return 'q'  # Stop Motors
 
     if y < -deadzone and abs(x) < deadzone:
         return 'w'  # Forward
     elif y > deadzone and abs(x) < deadzone:
         return 's'  # Backward
     elif x < -deadzone:
-        return 'l'  # Turn Left
+        return 'l'  # 
     elif x > deadzone:
         return 'r'  # Turn Right
-    return 'q'  # Safety Stop
+    return 'q'  # Safety fallback
 
 # ----- MAIN LOOP -----
 last_cmd = ''
