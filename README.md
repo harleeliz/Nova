@@ -62,3 +62,17 @@ Nova/
 - **Python** for desktop-based controller interface  
 - **PlatformIO + C++** for microcontroller firmware  
 - **Cirkit Designer** for hardware design
+
+
+---
+
+<h2>📸 Nova Robot Gallery</h2>
+
+<p><strong>GUI Interface</strong></p>
+<img src="Photobooth/Android_Nova_APP.jpg" alt="GUI NOVA" width="400"/>
+
+<p><strong>Nova Lights Off - View 1</strong></p>
+<img src="Photobooth/LightsOff_Nova_1.png" alt="LightsOff View" width="400"/>
+
+<p><strong>Qing Dynasty Dragon Color Style</strong></p>
+<img src="Photobooth/rgb_66_85_246_Qing%20Dynasty%20Dragon_Nova.png" alt="Qing Dragon Nova" width="400"/>
